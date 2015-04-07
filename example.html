@@ -39,7 +39,7 @@
     <SCRIPT src="dnabundle.js"></SCRIPT>
     <SCRIPT>
         (function(root){
-            var dnawrapper = root.dna_require('dnawrapper');
+            var dnawrapper = root.dna_require();
 
             /** Use this function to set protocols for DNA.
                 It must be called before `run()`-ning DNA.
@@ -48,21 +48,17 @@
 
                 ```
                 {
-                   'IDom': ['dc-idom'],
-                   'ILogger': ['console-logger'],
-                   'IHelper': ['dc-helper']
+                   'IDom': dcidom
+                   'ILogger': consolelogger
+                   'IHelper': dchelper
                 }
                 ```
 
                 When dispatching a protocol DNA will `dna_require()` modules
                 from provided protocols config.
 
-                That is, when DNA will encounter a protocol `ZZZ` it will try
-                to `dna_require('some_module')`.
-
-                *This behavior is subject to change.
             */
-            dnawrapper.setProtocols({'ZZZ': ["some_module"]});
+            //dnawrapper.setProtocols({'ZZZ': {protocols: { definitions: DEFN, implementations: IMPL}} });
 
             // `start_synthesis` will happen here, you should probably run this
             // after document ready event

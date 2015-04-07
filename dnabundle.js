@@ -86,7 +86,8 @@
       return path.split('/').slice(0).join('/');
     };
     this.dna_require = function(name) {
-      return dna_require(name, '');
+        if (!name) { name = 'dnawrapper' }
+        return dna_require(name, '');
     };
     this.dna_require.modules = function() {
       return dna_require.modules();
