@@ -40,7 +40,7 @@
 
 
     <!--
-        Dna bundle imports `window.jQuery`, but the Jquery is not bundled in
+        Dna bundle imports `window.jQuery`, but the Jquery itself is not bundled in
     -->
     <script src="https://code.jquery.com/jquery-2.1.3.js"></script>
 
@@ -66,23 +66,18 @@
 
             var dnawrapper = root.dna_require();
 
-            /** Use this function to set protocols for DNA.
-                It must be called before `run()`-ning DNA.
-
-                Default protocols already included:
-
-                ```
-                {
-                   'IDom': dcidom
-                   'ILogger': consolelogger
-                   'IHelper': dchelper
-                }
-                ```
-            */
+            /*  Use this function to set protocols for DNA.
+             *  It may be called many times, just be sure
+             *  to do so before`run()`-ning DNA.
+             *
+             *  Default protocols already included: IDom, ILogger, IHelper
+             *
+             */
             dnawrapper.setProtocols({'IGreet': GreetComponent });
 
-            // `start_synthesis` will happen here, you should probably run this
-            // after document ready event
+            /*  `start_synthesis` will happen here, you should probably run this
+             *  after document ready event
+             */
             dnawrapper.run();
         }(window))
     </SCRIPT>
