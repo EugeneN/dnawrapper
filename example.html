@@ -25,6 +25,14 @@
             ' click : "" | set-html!@greetings-placeholder
             '
             >Clear</button>
+
+        <input id="greet-name" type=text placeholder="Put a name here" />
+
+        <button data-extend="IGreet"
+                data-subscribe=
+                        ' click : getValue@greet-name | greet
+                        '
+                >Greet</button>
     </div>
 
     <div id="greetings-placeholder"></div>
@@ -39,6 +47,23 @@
     <SCRIPT src="dnabundle.js"></SCRIPT>
     <SCRIPT>
         (function(root){
+            var AlertComponent = {
+                protocols: {
+                    definitions: {
+                        "IGreet": [['greet', ["arg"]]]
+                    },
+                    implementations: {
+                        "IGreet": function (node) {
+                            return {
+                                "greet": function (arg) {
+                                    alert("greetings, " + arg);
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
             var dnawrapper = root.dna_require();
 
             /** Use this function to set protocols for DNA.
@@ -53,12 +78,8 @@
                    'IHelper': dchelper
                 }
                 ```
-
-                When dispatching a protocol DNA will `dna_require()` modules
-                from provided protocols config.
-
             */
-            //dnawrapper.setProtocols({'ZZZ': {protocols: { definitions: DEFN, implementations: IMPL}} });
+            dnawrapper.setProtocols({'IGreet': AlertComponent });
 
             // `start_synthesis` will happen here, you should probably run this
             // after document ready event

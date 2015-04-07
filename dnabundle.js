@@ -1652,19 +1652,7 @@ dna_require.define('libprotocol', {
                     }
                 };
                 unique = function (arr) {
-                    var a, i, k, _i, _len, _results;
-                    a = {};
-                    for (_i = 0, _len = arr.length; _i < _len; _i++) {
-                        i = arr[_i];
-                        a[i] = true;
-                    }
-                    _results = [];
-                    for (k in a) {
-                        if (!__hasProp.call(a, k))
-                            continue;
-                        _results.push(k);
-                    }
-                    return _results;
+                    return arr.filter(function(val, idx, self){ return self.indexOf(val) === idx })
                 };
                 uncache_protocol = function (protocol) {
                     var cache, mods, _i, _len;
