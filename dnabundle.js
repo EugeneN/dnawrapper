@@ -1678,7 +1678,16 @@ dna_require.define('libprotocol', {
                             }
                             mods = unique(mods);
                             return mods.map(function (modname) {
-                                return register_exports(dna_require(modname));
+                                if (typeof modname === 'string') {
+                                    return register_exports(dna_require(modname));
+                                } else {
+                                    // an instance
+                                    // `modname` must be an object
+                                    //
+                                    // {protocols: { definitions: ...
+                                    //             , implementations: ...}}
+                                    return register_exports(modname);
+                                }
                             });
                         }
                     }
