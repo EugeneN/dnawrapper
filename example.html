@@ -47,7 +47,7 @@
     <SCRIPT src="dnabundle.js"></SCRIPT>
     <SCRIPT>
         (function(root){
-            var AlertComponent = {
+            var GreetComponent = {
                 protocols: {
                     definitions: {
                         "IGreet": [['greet', ["arg"]]]
@@ -79,7 +79,7 @@
                 }
                 ```
             */
-            dnawrapper.setProtocols({'IGreet': AlertComponent });
+            dnawrapper.setProtocols({'IGreet': GreetComponent });
 
             // `start_synthesis` will happen here, you should probably run this
             // after document ready event
